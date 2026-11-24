@@ -11,7 +11,12 @@
 - Inhalt bisher: Integralrechnung, Unterthemen 0 (Ableiten) und 1 (Stammfunktion) mit Beispielaufgaben. Unterthemen sind ein Vorschlag, werden an die Pakete der Lehrerin angepasst.
 - Getestet lokal mit Playwright gegen einen Test-Datenbank-Ersatz: Einrichten, Schüler anlegen, Einladung, Schicken, Selbstkontrolle, Falsch-Passwort, Rechte (Schüler kommt nicht auf Niki-Seiten), Passwort-Reset.
 
+## 2026-11-24: Datenbank
+- Supabase-Gratis erlaubt nur 2 aktive Projekte (Apply AI + Sponsoring). Entscheidung Niki: Tabellen `nh_*` ins **Apply-AI-Projekt** (`ebafsuieuwoftdhrkbax`).
+- App verbindet sich per Postgres (`DATABASE_URL`, Pooler) als Rolle `nachhilfe_app`. Die Rolle hat nur Rechte auf die `nh_`-Tabellen (geprüft: kein Zugriff auf `jobs`). RLS an, Policies nur für diese Rolle, `anon`/`authenticated` haben keine Rechte.
+- Lokal getestet gegen echtes Postgres 16 mit derselben Rolle: alle Abläufe grün.
+
 ## Offen
-- Supabase-Projekt + Vercel einrichten, online stellen.
+- Vercel einrichten, online stellen.
 - Unterlagen der Lehrerin sichten, Unterthemen anpassen, Pool-Aufgaben als Original einbinden.
 - Buchaufgaben (Mathematik verstehen 8) einbauen, sobald Niki sie schickt.
