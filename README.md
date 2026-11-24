@@ -2,12 +2,12 @@
 
 Mathe-Nachhilfe-Tool: Niki hat pro Schüler und Thema Leitfaden, Aufgaben und Stand parat, schickt Aufgaben, druckt Arbeitsblätter. Schüler sehen oben, was Niki geschickt hat, und haken ab.
 
-**Stack:** Next.js 15 (App Router) · Supabase (nur Postgres, Zugriff ausschließlich vom Server) · Vercel · KaTeX für Formeln.
+**Stack:** Next.js 15 (App Router) · Postgres bei Supabase (Tabellen `nh_*` im Apply-AI-Projekt, eigene Rolle `nachhilfe_app` ohne Zugriff auf andere Tabellen, nur vom Server) · Vercel · KaTeX für Formeln.
 
 ## Einrichten
-1. Supabase-Projekt anlegen, im SQL-Editor `supabase/schema.sql` ausführen.
+1. `supabase/schema.sql` im Supabase-Projekt ausführen, dazu die Rolle `nachhilfe_app` (siehe `supabase/rolle.sql`).
 2. Umgebungsvariablen (lokal `.env.local`, auf Vercel unter Settings → Environment Variables):
-   - `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` (Supabase → Project Settings → API)
+   - `DATABASE_URL` (Pooler, Transaction-Modus, Benutzer `nachhilfe_app.<projekt-ref>`)
    - `SESSION_SECRET` (zufällig, mind. 32 Zeichen)
    - `SETUP_CODE` (einmaliger Code für `/einrichten`, danach egal)
 3. `npm install && npm run dev`, dann `/einrichten` öffnen und Nikis Konto anlegen.

@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { db, nutzerById, nutzerByName, nutzerByEinladung, adminExistiert, setzeStand, pinne, entpinne, setzeNotiz, setzeHaken, loescheHaken, STATUS, type Status } from "@/lib/db";
+import { nutzerAnlegen, nutzerZugang, schuelerEntfernen, nutzerById, nutzerByName, nutzerByEinladung, adminExistiert, setzeStand, pinne, entpinne, setzeNotiz, setzeHaken, loescheHaken, STATUS, type Status } from "@/lib/db";
 import { anmelden, abmelden, aktuellerNutzer, brauchtAdmin, hashPasswort, pruefePasswort, neuesToken, setzeFuer } from "@/lib/auth";
 import { aufgabe } from "@/content";
 
@@ -48,9 +48,8 @@ export async function einrichtenAktion(_: Meldung, fd: FormData): Promise<Meldun
   if (!name) return { fehler: "Bitte einen Namen eingeben." };
   const p = passwortOk(pw);
   if (p) return { fehler: p };
-  const r = await db().from("nutzer").insert({ name, rolle: "admin", passwort_hash: await hashPasswort(pw) }).select("*").single();
-  if (r.error) return { fehler: r.error.message };
-  await anmelden(r.data);
+  const n = await nutzerAnlegen({ name, rolle: "admin", passwort_hash: await hashPasswort(pw) });
+  await anmelden(n);
   redirect("/niki");
 }
 
@@ -64,14 +63,8 @@ export async function einladungAktion(_: Meldung, fd: FormData): Promise<Meldung
   const p = passwortOk(pw);
   if (p) return { fehler: p };
   if (pw !== pw2) return { fehler: "Die beiden Passwörter sind nicht gleich." };
-  const r = await db()
-    .from("nutzer")
-    .update({ passwort_hash: await hashPasswort(pw), einladung: null, sitzung_version: n.sitzung_version + 1 })
-    .eq("id", n.id)
-    .select("*")
-    .single();
-  if (r.error) return { fehler: r.error.message };
-  await anmelden(r.data);
+  const neu = await nutzerZugang(n.id, { passwort_hash: await hashPasswort(pw), einladung: null });
+  await anmelden(neu);
   redirect(n.rolle === "admin" ? "/niki" : "/lernen");
 }
 
@@ -82,24 +75,23 @@ export async function schuelerAnlegen(_: Meldung, fd: FormData): Promise<Meldung
   const klasse = sauber(fd.get("klasse")) || null;
   if (!name) return { fehler: "Bitte einen Vornamen eingeben." };
   if (await nutzerByName(name)) return { fehler: `„${name}“ gibt es schon. Häng zum Beispiel den Anfangsbuchstaben vom Nachnamen an.` };
-  const r = await db().from("nutzer").insert({ name, klasse, rolle: "schueler", einladung: neuesToken() }).select("id").single();
-  if (r.error) return { fehler: r.error.message };
-  await setzeFuer(r.data.id);
+  const n = await nutzerAnlegen({ name, klasse, rolle: "schueler", einladung: neuesToken() });
+  await setzeFuer(n.id);
   revalidatePath("/niki", "layout");
-  redirect(`/niki/schueler/${r.data.id}`);
+  redirect(`/niki/schueler/${n.id}`);
 }
 
 export async function passwortZuruecksetzen(id: string) {
   await brauchtAdmin();
   const n = await nutzerById(id);
   if (!n || n.rolle !== "schueler") return;
-  await db().from("nutzer").update({ einladung: neuesToken(), passwort_hash: null, sitzung_version: n.sitzung_version + 1 }).eq("id", id);
+  await nutzerZugang(id, { passwort_hash: null, einladung: neuesToken() });
   revalidatePath(`/niki/schueler/${id}`);
 }
 
 export async function schuelerLoeschen(id: string) {
   await brauchtAdmin();
-  await db().from("nutzer").delete().eq("id", id).eq("rolle", "schueler");
+  await schuelerEntfernen(id);
   revalidatePath("/niki", "layout");
   redirect("/niki/schueler");
 }
