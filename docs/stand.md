@@ -26,7 +26,7 @@
 - Arbeitsblatt druckt Originale je Bild auf eigener Seite.
 
 ## Offen (nächste Schritte, in dieser Reihenfolge)
-1. Bilder der Stundenblätter ins Repo bringen (noch nicht hochgeladen, Freigabe von Niki nötig).
+1. ✓ Bilder hochgeladen (Freigabe von Niki 24.11., über PC).
 2. E2E-Test `/tmp/claude-0/e2e2.js` anpassen: Auswahl per Aufgaben-ID (`#a-int-1-03 .sel-tick`) statt Position, dann lokal prüfen (Schüler: leer 200, Lösung 404; Niki: Lösung 200).
 3. Auf Vercel prüfen, dass Bilder über `/datei/...` laden.
 4. Einzelne Pool-Aufgaben (151 mit Lösungen) als Original einbinden, sobald der Ordner im Repo liegt.
