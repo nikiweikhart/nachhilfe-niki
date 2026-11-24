@@ -19,7 +19,7 @@ export default async function ThemaSeite({ params }: { params: Promise<{ thema: 
       <div className="card">
         <UnterthemaListe thema={t} stand={stand} nummern />
       </div>
-      {istNiki && <p className="note">Die Unterthemen sind ein erster Vorschlag und werden an die Pakete aus dem Unterricht angepasst.</p>}
+      {istNiki && <p className="note">Aufgebaut nach den Stundenblättern aus dem Unterricht (08.09.–18.11.). Lösungen der Blätter siehst nur du.</p>}
     </>
   );
 }

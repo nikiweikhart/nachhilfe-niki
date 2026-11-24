@@ -58,7 +58,7 @@ export default async function UnterthemaSeite({
 
   const stand = schueler ? await standVon(schueler.id) : {};
   const aufgaben = t.aufgaben.filter((a) => a.unterthema === u.id);
-  const gruppen = STUFEN.map((s) => ({ titel: s, karten: aufgaben.filter((a) => a.stufe === s).map(karte) })).filter((g) => g.karten.length);
+  const gruppen = STUFEN.map((s) => ({ titel: s, karten: aufgaben.filter((a) => a.stufe === s).map((a) => karte(a, istNiki)) })).filter((g) => g.karten.length);
 
   return (
     <>

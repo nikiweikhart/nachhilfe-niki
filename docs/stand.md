@@ -20,6 +20,14 @@
 - Vercel-Projekt `nachhilfe-niki` (Team niki-bd01), Adresse **https://nachhilfe-niki.vercel.app**, Funktionen in dub1 (nahe Supabase eu-west-1). Pushes auf `main` gehen automatisch live.
 - Umgebungsvariablen in Vercel: `DATABASE_URL` (Pooler **aws-1**-eu-west-1; aws-0 kennt das Projekt nicht), `SESSION_SECRET`, `SETUP_CODE`.
 
-## Offen
-- Unterlagen der Lehrerin sichten, Unterthemen anpassen, Pool-Aufgaben als Original einbinden.
+## 2026-11-24: Stundenblätter aus dem Unterricht
+- 21 Stundenblätter (08.09.–18.11.) eingetragen in `src/content/unterricht-integral.ts`, Bilder gehören nach `private/unterricht/<datum>/` (leer-N.jpg, loesungen-N.jpg; aus den PDFs im Second Brain unter `Claude outputs/nachhilfe/unterlagen-integral/`, 100 dpi, JPEG q75).
+- Unterthemen neu geordnet wie im Unterricht (int-0, 1, 7, 8, 3, 2, 4, 5, 6). Lösungsbilder (Dateiname beginnt mit `loesung`) sieht nur Niki, Schüler bekommen 404.
+- Arbeitsblatt druckt Originale je Bild auf eigener Seite.
+
+## Offen (nächste Schritte, in dieser Reihenfolge)
+1. Bilder der Stundenblätter ins Repo bringen (noch nicht hochgeladen, Freigabe von Niki nötig).
+2. E2E-Test `/tmp/claude-0/e2e2.js` anpassen: Auswahl per Aufgaben-ID (`#a-int-1-03 .sel-tick`) statt Position, dann lokal prüfen (Schüler: leer 200, Lösung 404; Niki: Lösung 200).
+3. Auf Vercel prüfen, dass Bilder über `/datei/...` laden.
+4. Einzelne Pool-Aufgaben (151 mit Lösungen) als Original einbinden, sobald der Ordner im Repo liegt.
 - Buchaufgaben (Mathematik verstehen 8) einbauen, sobald Niki sie schickt.

@@ -22,6 +22,7 @@ export type KartenDaten = {
   einheit?: string;
   geogebra?: string;
   bilder?: string[];
+  loesungBilder?: string[];
 };
 
 const H = ({ h }: { h: string }) => <span dangerouslySetInnerHTML={{ __html: h }} />;
@@ -95,7 +96,7 @@ export function AufgabeKarte({
 
       {a.art === "original" ? (
         <div className="original">
-          {a.frage && <p className="q"><H h={a.frage} /></p>}
+          {a.frage && <p className="q" style={{ margin: "0 0 10px", fontWeight: 600 }}><H h={a.frage} /></p>}
           {(a.bilder ?? []).map((b) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img key={b} src={`/datei/${b}`} alt="Originalaufgabe" loading="lazy" />
@@ -144,10 +145,24 @@ export function AufgabeKarte({
           <div className="in ggb">{a.geogebra}</div>
         </details>
       )}
-      <details className="sol" open={loesungOffen}>
-        <summary>Lösung</summary>
-        <div className="in mathscroll"><H h={a.loesung} /></div>
-      </details>
+      {a.art === "original" ? (
+        a.loesungBilder?.length ? (
+          <details className="sol">
+            <summary>Lösung aus dem Unterricht</summary>
+            <div className="in original">
+              {a.loesungBilder.map((b) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img key={b} src={`/datei/${b}`} alt="Lösung" loading="lazy" />
+              ))}
+            </div>
+          </details>
+        ) : null
+      ) : (
+        <details className="sol" open={loesungOffen}>
+          <summary>Lösung</summary>
+          <div className="in mathscroll"><H h={a.loesung} /></div>
+        </details>
+      )}
 
       {kannSetzen && (
         <div className="status" role="group" aria-label="Stand">

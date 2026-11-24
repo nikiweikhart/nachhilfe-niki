@@ -39,10 +39,18 @@ export default async function Blatt({ searchParams }: { searchParams: Promise<{ 
     <div style={{ background: "var(--bg)", minHeight: "100vh", paddingBottom: 24 }}>
       <div className="blatt-leiste">
         <ZurueckKnopf />
-        <span className="note">{aufgaben.length} Aufgaben · {seiten.length} {seiten.length === 1 ? "Seite" : "Seiten"}</span>
+        <span className="note">{aufgaben.length} {aufgaben.length === 1 ? "Blatt/Aufgabe" : "Blätter/Aufgaben"}</span>
         <DruckKnopf />
       </div>
-      {seiten.map((seite, si) => (
+      {seiten.map((seite, si) =>
+        seite[0]?.art === "original" ? (
+          (seite[0] as Extract<Aufgabe, { art: "original" }>).bilder.map((b) => (
+            <section className="seite bild" key={b}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/datei/${b}`} alt="Originalblatt" />
+            </section>
+          ))
+        ) : (
         <section className="seite" key={si}>
           <div className="kopf"><span>Mathe-Nachhilfe · {t.stufe}</span><span>Name: ________________</span></div>
           {si === 0 && <div className="titel">{titel}</div>}
@@ -69,7 +77,8 @@ export default async function Blatt({ searchParams }: { searchParams: Promise<{ 
           })}
           <div className="fuss"><span>Nachhilfe Niki</span><span>Seite {si + 1}</span></div>
         </section>
-      ))}
+        ),
+      )}
     </div>
   );
 }

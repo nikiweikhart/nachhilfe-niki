@@ -1,4 +1,5 @@
 import type { Thema } from "./types";
+import { unterrichtIntegral } from "./unterricht-integral";
 
 const R = String.raw;
 
@@ -71,13 +72,116 @@ export const integral: Thema = {
       ],
       typischeFehler: R`ableiten statt integrieren · + C vergessen · durch die alte Hochzahl teilen · bei \(\int 5\,dx\) das x vergessen · \(\int \tfrac1x\,dx\) mit der Potenzregel versuchen (ist \(\ln|x|\))`,
     },
-    { id: "int-2", name: "Bestimmtes Integral & Hauptsatz", kurz: "F(b) − F(a) und was es bedeutet", grundkompetenz: "AN 4.2", bereit: false, leitfaden: [] },
-    { id: "int-3", name: "Ober- und Untersumme", kurz: "Fläche mit Rechtecken annähern", grundkompetenz: "AN 4.1", bereit: false, leitfaden: [] },
-    { id: "int-4", name: "Flächen berechnen", kurz: "unter der Kurve, zwischen zwei Kurven", grundkompetenz: "AN 4.3", bereit: false, leitfaden: [] },
-    { id: "int-5", name: "Anwendungen", kurz: "Weg, Wassermenge, Kosten, Mittelwert", grundkompetenz: "AN 4.3", bereit: false, leitfaden: [] },
-    { id: "int-6", name: "Matura-Mix", kurz: "Typ 1 und Typ 2 aus dem Aufgabenpool", grundkompetenz: "AN 4.1–4.3", bereit: false, leitfaden: [] },
+    {
+      id: "int-7",
+      name: "Integrationsregeln",
+      kurz: "Potenz-, Faktor-, Summenregel, Exponential- und Winkelfunktionen",
+      grundkompetenz: "AN 4.2",
+      bereit: true,
+      leitfaden: [
+        { phase: "Erklären", punkte: [
+          R`Potenzregel: \(\int x^n\,dx=\frac{x^{n+1}}{n+1}+C\) für \(n\neq-1\)`,
+          R`Sonderfall \(\int \frac1x\,dx=\ln|x|+C\)`,
+          R`\(\int e^x\,dx=e^x+C\), \(\int \sin x\,dx=-\cos x+C\), \(\int \cos x\,dx=\sin x+C\)`,
+          "Konstanter Faktor bleibt, Summen gliedweise",
+          "Formelsammlung zeigen: wo die Regeln stehen",
+        ]},
+        { phase: "Üben", punkte: ["Stundenblatt gemeinsam, Poolaufgaben AN 4.2 allein", "Probe immer durch Ableiten"] },
+      ],
+    },
+    {
+      id: "int-8",
+      name: "Graphisch integrieren",
+      kurz: "Vom Graphen von f auf den Graphen der Stammfunktion schließen",
+      grundkompetenz: "AN 3.3",
+      bereit: true,
+      leitfaden: [
+        { phase: "Erklären", punkte: [
+          "f ist die Steigung von F: wo f > 0, steigt F; wo f < 0, fällt F",
+          "Nullstelle von f mit Vorzeichenwechsel = Extremstelle von F",
+          "Extremstelle von f = Wendestelle von F",
+          "In GeoGebra: Integral(f) zeichnen lassen und vergleichen",
+        ]},
+        { phase: "Üben", punkte: ["Graphen-Zuordnungen aus dem Stundenblatt", "Typische Matura-Frage: Aussagen über F aus dem Graphen von f"] },
+      ],
+    },
+    {
+      id: "int-3",
+      name: "Fläche unter dem Graphen, Ober- und Untersumme",
+      kurz: "Fläche mit Rechtecken annähern",
+      grundkompetenz: "AN 4.1",
+      bereit: true,
+      leitfaden: [
+        { phase: "Erklären", punkte: [
+          "Fläche mit Rechtecken annähern: Untersumme ≤ Fläche ≤ Obersumme",
+          "Mehr Rechtecke → genauer; Grenzwert = bestimmtes Integral",
+          "Bei monoton steigender Funktion: links = Untersumme, rechts = Obersumme",
+        ]},
+        { phase: "Üben", punkte: ["Untersumme mit 4 Rechtecken händisch", "Poolaufgaben AN 4.1"] },
+      ],
+    },
+    {
+      id: "int-2",
+      name: "Bestimmtes Integral & Hauptsatz",
+      kurz: "F(b) − F(a) und was es bedeutet",
+      grundkompetenz: "AN 4.2",
+      bereit: true,
+      leitfaden: [
+        { phase: "Erklären", punkte: [
+          R`Hauptsatz: \(\int_a^b f(x)\,dx = F(b)-F(a)\)`,
+          "Bestimmtes Integral ≠ Fläche, wenn f unter der x-Achse liegt (Fläche zählt dann negativ)",
+          "In GeoGebra: Integral(f, a, b)",
+        ]},
+        { phase: "Üben", punkte: ["Stundenblatt, dann Poolaufgaben AN 4.1/4.2"] },
+      ],
+    },
+    {
+      id: "int-4",
+      name: "Flächen berechnen",
+      kurz: "unter der Kurve, zwischen zwei Kurven",
+      grundkompetenz: "AN 4.3",
+      bereit: true,
+      leitfaden: [
+        { phase: "Erklären", punkte: [
+          "Immer zuerst skizzieren (GeoGebra): wo liegt die Fläche, wo sind Nullstellen?",
+          "Teile unter der x-Achse getrennt berechnen und Betrag nehmen",
+          R`Zwischen zwei Kurven: \(\int_a^b (oben - unten)\,dx\), Grenzen = Schnittpunkte`,
+        ]},
+        { phase: "Üben", punkte: ["Stundenblatt Fläche zwischen zwei Graphen", "Poolaufgaben AN 4.3 (Flächen)"] },
+      ],
+    },
+    {
+      id: "int-5",
+      name: "Anwendungen",
+      kurz: "Weg, Wassermenge, Kosten, Arbeit",
+      grundkompetenz: "AN 4.3",
+      bereit: true,
+      leitfaden: [
+        { phase: "Erklären", punkte: [
+          "Integral einer Änderungsrate = Gesamtänderung (Geschwindigkeit → Weg, Zufluss → Wassermenge, Grenzkosten → Kosten)",
+          "Einheiten mitdenken: m/s mal s = m",
+          R`Physik: Arbeit \(W=\int F(s)\,ds\)`,
+          "In Worten deuten üben: „Was bedeutet das Integral im Kontext?“",
+        ]},
+        { phase: "Üben", punkte: ["Poolaufgaben Anwendungen 1 und 2", "Physik: Arbeit"] },
+      ],
+    },
+    {
+      id: "int-6",
+      name: "Matura-Mix",
+      kurz: "Kompetenzcheck und gemischte Poolaufgaben",
+      grundkompetenz: "AN 3–AN 4.3",
+      bereit: true,
+      leitfaden: [
+        { phase: "Ablauf", punkte: [
+          "Unter Zeitdruck rechnen lassen wie bei der Matura",
+          "Danach Fehler sortieren: welches Unterthema wackelt? Dort nochmal üben",
+        ]},
+      ],
+    },
   ],
   aufgaben: [
+    ...unterrichtIntegral,
     {
       id: "int-0-01", unterthema: "int-0", typ: "Potenzregel", stufe: "Einstieg", quelle: "selbst gemacht",
       art: "ankreuzen", frage: R`Was ist die Ableitung von \(f(x)=x^3\)?`,

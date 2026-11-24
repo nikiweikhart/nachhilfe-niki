@@ -29,7 +29,7 @@ export type Aufgabe =
   | (Basis & { art: "mehrfach"; optionen: MathText[]; richtig: number[] }) // mehrere richtig (z. B. 2 aus 5)
   | (Basis & { art: "zahl"; richtig: number; einheit?: string; label?: string })
   | (Basis & { art: "aufdecken" }) // auf Papier rechnen, Lösung aufdecken
-  | (Basis & { art: "original"; bilder: string[] }); // Original-Aufgabe als Bild (Pool, Lehrerin), unverändert
+  | (Basis & { art: "original"; bilder: string[]; loesungBilder?: string[] }); // Original als Bild (Pool, Unterricht), unverändert; Lösungsbilder nur für Niki
 
 export type LeitfadenPhase = { phase: string; punkte: MathText[] };
 

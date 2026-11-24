@@ -7,8 +7,11 @@ const BASIS = path.join(process.cwd(), "private");
 const TYPEN: Record<string, string> = { ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp", ".pdf": "application/pdf" };
 
 export async function GET(_: Request, { params }: { params: Promise<{ pfad: string[] }> }) {
-  if (!(await aktuellerNutzer())) return new Response("Nicht angemeldet", { status: 401 });
+  const n = await aktuellerNutzer();
+  if (!n) return new Response("Nicht angemeldet", { status: 401 });
   const { pfad } = await params;
+  // Lösungsfassungen nur für Niki
+  if (n.rolle !== "admin" && pfad.some((p) => p.startsWith("loesung"))) return new Response("Nicht gefunden", { status: 404 });
   const ziel = path.resolve(BASIS, ...pfad);
   if (!ziel.startsWith(BASIS + path.sep)) return new Response("Nicht gefunden", { status: 404 });
   const typ = TYPEN[path.extname(ziel).toLowerCase()];

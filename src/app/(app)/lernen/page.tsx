@@ -11,7 +11,7 @@ export default async function Lernen() {
   const ich = await brauchtNutzer();
   if (ich.rolle === "admin") redirect("/niki");
   const [stand, pins] = await Promise.all([standVon(ich.id), pinsVon(ich.id)]);
-  const karten = pins.map((id) => aufgabe(id)).filter((a) => !!a).map((a) => karte(a!));
+  const karten = pins.map((id) => aufgabe(id)).filter((a) => !!a).map((a) => karte(a!, false));
   const offen = pins.filter((id) => (stand[id] ?? "offen") !== "sitzt").length;
 
   return (
