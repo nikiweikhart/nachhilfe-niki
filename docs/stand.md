@@ -16,7 +16,10 @@
 - App verbindet sich per Postgres (`DATABASE_URL`, Pooler) als Rolle `nachhilfe_app`. Die Rolle hat nur Rechte auf die `nh_`-Tabellen (geprüft: kein Zugriff auf `jobs`). RLS an, Policies nur für diese Rolle, `anon`/`authenticated` haben keine Rechte.
 - Lokal getestet gegen echtes Postgres 16 mit derselben Rolle: alle Abläufe grün.
 
+## 2026-11-24: online
+- Vercel-Projekt `nachhilfe-niki` (Team niki-bd01), Adresse **https://nachhilfe-niki.vercel.app**, Funktionen in dub1 (nahe Supabase eu-west-1). Pushes auf `main` gehen automatisch live.
+- Umgebungsvariablen in Vercel: `DATABASE_URL` (Pooler **aws-1**-eu-west-1; aws-0 kennt das Projekt nicht), `SESSION_SECRET`, `SETUP_CODE`.
+
 ## Offen
-- Vercel einrichten, online stellen.
 - Unterlagen der Lehrerin sichten, Unterthemen anpassen, Pool-Aufgaben als Original einbinden.
 - Buchaufgaben (Mathematik verstehen 8) einbauen, sobald Niki sie schickt.

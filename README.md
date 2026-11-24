@@ -7,7 +7,7 @@ Mathe-Nachhilfe-Tool: Niki hat pro Schüler und Thema Leitfaden, Aufgaben und St
 ## Einrichten
 1. `supabase/schema.sql` im Supabase-Projekt ausführen, dazu die Rolle `nachhilfe_app` (siehe `supabase/rolle.sql`).
 2. Umgebungsvariablen (lokal `.env.local`, auf Vercel unter Settings → Environment Variables):
-   - `DATABASE_URL` (Pooler, Transaction-Modus, Benutzer `nachhilfe_app.<projekt-ref>`)
+   - `DATABASE_URL` (Pooler `aws-1-eu-west-1.pooler.supabase.com:6543`, Transaction-Modus, Benutzer `nachhilfe_app.<projekt-ref>`)
    - `SESSION_SECRET` (zufällig, mind. 32 Zeichen)
    - `SETUP_CODE` (einmaliger Code für `/einrichten`, danach egal)
 3. `npm install && npm run dev`, dann `/einrichten` öffnen und Nikis Konto anlegen.
