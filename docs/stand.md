@@ -25,9 +25,14 @@
 - Unterthemen neu geordnet wie im Unterricht (int-0, 1, 7, 8, 3, 2, 4, 5, 6). Lösungsbilder (Dateiname beginnt mit `loesung`) sieht nur Niki, Schüler bekommen 404.
 - Arbeitsblatt druckt Originale je Bild auf eigener Seite.
 
-## Offen (nächste Schritte, in dieser Reihenfolge)
-1. ✓ Bilder hochgeladen (Freigabe von Niki 24.11., über PC).
-2. E2E-Test `/tmp/claude-0/e2e2.js` anpassen: Auswahl per Aufgaben-ID (`#a-int-1-03 .sel-tick`) statt Position, dann lokal prüfen (Schüler: leer 200, Lösung 404; Niki: Lösung 200).
-3. Auf Vercel prüfen, dass Bilder über `/datei/...` laden.
-4. Einzelne Pool-Aufgaben (151 mit Lösungen) als Original einbinden, sobald der Ordner im Repo liegt.
-- Buchaufgaben (Mathematik verstehen 8) einbauen, sobald Niki sie schickt.
+## 2026-11-25: Prüfung vor der ersten Stunde
+- E2E lokal grün (Einrichten, Schülerin einladen, schicken, Autocheck, falsches Passwort, Rechte, Lösungsbilder 404 für Schüler, Passwort-Reset).
+- Live: Sicherheits-Header da, /niki ohne Login → Anmelden. Alle 176 Bilder im Build der /datei-Route.
+- Supabase: RLS an allen nh_-Tabellen, Policies nur für nachhilfe_app, anon/authenticated ohne Rechte, Rolle ohne Rechte auf fremde Tabellen.
+- Schülerin „Hana“ (8. Klasse) direkt angelegt, Einladungslink an Niki gegeben. Nikis Admin-Konto fehlt noch (/einrichten mit SETUP_CODE).
+
+## Offen (nächste Schritte)
+1. Niki richtet sein Konto ein und prüft ein Stundenblatt live.
+2. Einzelne Pool-Aufgaben (151 mit Lösungen) als Original einbinden.
+3. Buchaufgaben, sobald Niki sie schickt.
+4. Optional: Anmelde-Sperre nach vielen Fehlversuchen (derzeit nur 0,6 s Verzögerung).
