@@ -1,6 +1,5 @@
 import type { Thema } from "./types";
 import { unterrichtIntegral } from "./unterricht-integral";
-import { nachhilfeIntegral } from "./nachhilfe-integral";
 
 const R = String.raw;
 
@@ -182,7 +181,6 @@ export const integral: Thema = {
     },
   ],
   aufgaben: [
-    ...nachhilfeIntegral,
     ...unterrichtIntegral,
     {
       id: "int-0-01", unterthema: "int-0", typ: "Potenzregel", stufe: "Einstieg", quelle: "selbst gemacht",

@@ -34,9 +34,6 @@
 ## 2026-11-26: Leere Fassungen nachgeputzt
 - Reste in den leeren Fassungen: farbig getippte Lösungstexte (rot/blau) und ein Handschrift-Bild (09.10., Integrationsregeln). Werden per Skript entfernt (farbige Textstellen schwärzen-frei löschen, reine Tinten-Bilder löschen), Graphen und Screenshots bleiben. Hochladen läuft über Nikis PC (Cloud-Sperre für Unterlagen der Lehrerin).
 
-## 2026-11-26: Nachhilfe-Blätter Stunde 2
-- 6 eigene Blätter (Formelsammlung, Aufwärmen, Regel erkennen, Regeln anwenden, Fortgeschritten, Minus-Flächen) als Bild in `private/nachhilfe/stunde2/`, Inhalt `src/content/nachhilfe-integral.ts` (IDs int-n-2-1…6). Lösungsbilder nur Niki.
-
 ## Geplant: Bereich „Schule“ für Hana
 - Niki schickt Fotos/Scans aus Hanas Schulmappe (Aufgaben ihrer Lehrerin, Ziel Schularbeit, nicht Matura). Eigenes Thema getrennt von „Integralrechnung“ (Matura), z. B. `src/content/schule-hana.ts`, Aufgaben als Original (Bild), nur für Hana + Niki sichtbar. Wird angelegt, sobald die ersten Fotos da sind.
 

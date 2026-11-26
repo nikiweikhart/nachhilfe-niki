@@ -148,7 +148,7 @@ export function AufgabeKarte({
       {a.art === "original" ? (
         a.loesungBilder?.length ? (
           <details className="sol">
-            <summary>{a.quelle === "Unterricht" ? "Lösung aus dem Unterricht" : "Lösung"}</summary>
+            <summary>Lösung aus dem Unterricht</summary>
             <div className="in original">
               {a.loesungBilder.map((b) => (
                 // eslint-disable-next-line @next/next/no-img-element
