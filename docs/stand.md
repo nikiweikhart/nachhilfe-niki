@@ -34,6 +34,9 @@
 ## 2026-11-26: Leere Fassungen nachgeputzt
 - Reste in den leeren Fassungen: farbig getippte Lösungstexte (rot/blau) und ein Handschrift-Bild (09.10., Integrationsregeln). Werden per Skript entfernt (farbige Textstellen schwärzen-frei löschen, reine Tinten-Bilder löschen), Graphen und Screenshots bleiben. Hochladen läuft über Nikis PC (Cloud-Sperre für Unterlagen der Lehrerin).
 
+## Entscheidung Niki (26.11.): eigene Stundenblätter nicht in die App
+- Die Blätter, die Niki für jede Stunde erstellt und ausgedruckt mitbringt, bleiben in Claude (Project Files), nicht in der App. Die App ist für Zusatzübungen, wenn Zeit bleibt.
+
 ## Geplant: Bereich „Schule“ für Hana
 - Niki schickt Fotos/Scans aus Hanas Schulmappe (Aufgaben ihrer Lehrerin, Ziel Schularbeit, nicht Matura). Eigenes Thema getrennt von „Integralrechnung“ (Matura), z. B. `src/content/schule-hana.ts`, Aufgaben als Original (Bild), nur für Hana + Niki sichtbar. Wird angelegt, sobald die ersten Fotos da sind.
 
