@@ -31,6 +31,12 @@
 - Supabase: RLS an allen nh_-Tabellen, Policies nur für nachhilfe_app, anon/authenticated ohne Rechte, Rolle ohne Rechte auf fremde Tabellen.
 - Schülerin „Hana“ (8. Klasse) direkt angelegt, Einladungslink an Niki gegeben. Nikis Admin-Konto fehlt noch (/einrichten mit SETUP_CODE).
 
+## 2026-11-26: Leere Fassungen nachgeputzt
+- Reste in den leeren Fassungen: farbig getippte Lösungstexte (rot/blau) und ein Handschrift-Bild (09.10., Integrationsregeln). Werden per Skript entfernt (farbige Textstellen schwärzen-frei löschen, reine Tinten-Bilder löschen), Graphen und Screenshots bleiben. Hochladen läuft über Nikis PC (Cloud-Sperre für Unterlagen der Lehrerin).
+
+## Geplant: Bereich „Schule“ für Hana
+- Niki schickt Fotos/Scans aus Hanas Schulmappe (Aufgaben ihrer Lehrerin, Ziel Schularbeit, nicht Matura). Eigenes Thema getrennt von „Integralrechnung“ (Matura), z. B. `src/content/schule-hana.ts`, Aufgaben als Original (Bild), nur für Hana + Niki sichtbar. Wird angelegt, sobald die ersten Fotos da sind.
+
 ## Offen (nächste Schritte)
 1. Niki richtet sein Konto ein und prüft ein Stundenblatt live.
 2. Einzelne Pool-Aufgaben (151 mit Lösungen) als Original einbinden.
