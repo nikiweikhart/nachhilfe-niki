@@ -7,6 +7,7 @@ export type Quelle =
   | "selbst gemacht im Matura-Stil"
   | "Matura-Aufgabenpool"
   | "Unterricht"
+  | "Nachhilfe"
   | "Mathebuch";
 
 /** Text mit Formeln: alles zwischen \( und \) wird als LaTeX gesetzt. */
